@@ -9,7 +9,7 @@ namespace WooliesXTechnicalChallenge.Services
 {
     public interface IResourceService
     {
-        ShopperHistory GetShopperHisotry(string token);
+        IEnumerable<ShopperHistory> GetShopperHisotry(string token);
 
         IEnumerable<Product> GetProducts(string token);
 

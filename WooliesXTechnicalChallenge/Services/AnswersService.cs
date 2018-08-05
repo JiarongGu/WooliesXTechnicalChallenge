@@ -25,7 +25,10 @@ namespace WooliesXTechnicalChallenge.Services
             var token = _testerSettings.Token;
 
             if (sortOption == SortOptions.Recommended)
-                return _resourceService.GetShopperHisotry(token).Products;
+                return _resourceService.GetShopperHisotry(token)
+                    .SelectMany(x => x.Products)
+                    .GroupBy(x => (x.Name, x.Price))
+                    .Select(x => x.First());
 
             var products = _resourceService.GetProducts(token);
 

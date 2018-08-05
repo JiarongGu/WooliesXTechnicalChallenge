@@ -34,9 +34,9 @@ namespace WooliesXTechnicalChallenge.Services
             _querySettings = querySettings.Value;
         }
         
-        public ShopperHistory GetShopperHisotry(string token) {
+        public IEnumerable<ShopperHistory> GetShopperHisotry(string token) {
             return GetResourceHttpClient()
-                .Get<ShopperHistory>($"{_apiSettings.ShooperHistoryUri}?{GetTokenQuery(token)}");
+                .Get<IEnumerable<ShopperHistory>>($"{_apiSettings.ShooperHistoryUri}?{GetTokenQuery(token)}");
         }
 
         public IEnumerable<Product> GetProducts(string token)

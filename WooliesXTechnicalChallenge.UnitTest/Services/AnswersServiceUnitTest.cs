@@ -26,14 +26,16 @@ namespace WooliesXTechnicalChallenge.UnitTest.Services
                 new Product("Test Product F", 999999999999.0m, 0.0m)
             };
 
-            var shopperHistory = new ShopperHistory()
-            {
-                CustomerId = 1,
-                Products = new List<Product>
+            var shopperHistory = new List<ShopperHistory>{
+                new ShopperHistory()
                 {
-                    new Product("Test Product B", 101.99m, 0.0m),
-                    new Product("Test Product C", 10.99m, 0.0m),
-                    new Product("Test Product D", 5.0m, 0.0m)
+                    CustomerId = 1,
+                    Products = new List<Product>
+                    {
+                        new Product("Test Product B", 101.99m, 0.0m),
+                        new Product("Test Product C", 10.99m, 0.0m),
+                        new Product("Test Product D", 5.0m, 0.0m)
+                    }
                 }
             };
 
