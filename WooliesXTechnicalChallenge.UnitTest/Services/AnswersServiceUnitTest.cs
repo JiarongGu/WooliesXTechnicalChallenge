@@ -40,7 +40,7 @@ namespace WooliesXTechnicalChallenge.UnitTest.Services
             _resourceServiceMock.Setup(x => x.GetProducts("")).Returns(products);
             _resourceServiceMock.Setup(x => x.GetShopperHisotry("")).Returns(shopperHistory);
 
-            _testerSettingsMock.SetupGet(x => x.Value).Returns(new TesterSettings() { Name = "tester" });
+            _testerSettingsMock.SetupGet(x => x.Value).Returns(new TesterSettings() { Name = "tester", Token = "" });
         }
 
         [Fact]

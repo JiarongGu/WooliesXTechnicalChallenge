@@ -12,5 +12,7 @@ namespace WooliesXTechnicalChallenge.Services
         ShopperHistory GetShopperHisotry(string token);
 
         IEnumerable<Product> GetProducts(string token);
+
+        decimal GetTrolleyCalculator(TrolleyCalculatorRequest request, string token);
     }
 }

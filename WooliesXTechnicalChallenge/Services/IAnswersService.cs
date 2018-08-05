@@ -11,6 +11,9 @@ namespace WooliesXTechnicalChallenge.Services
     public interface IAnswersService
     {
         IEnumerable<Product> GetProducts(SortOptions sortOption);
+
         TesterSettings GetTesterSettings();
+
+        decimal GetTrolleyCalculator(TrolleyCalculatorRequest request);
     }
 }

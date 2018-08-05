@@ -47,7 +47,9 @@ namespace WooliesXTechnicalChallenge
 
             services.AddHttpClient(resourceApiSettings.Key, options => {
                 options.BaseAddress = new Uri(resourceApiSettings.BaseApiUri);
+
                 options.DefaultRequestHeaders.Add("Accept", "application/json");
+                options.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json-patch+json");
             });
 
             services.AddSingleton<IQueryBuilderService, QueryBuilderService>();

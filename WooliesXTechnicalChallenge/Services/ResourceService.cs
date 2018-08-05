@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using WooliesXTechnicalChallenge.Enums;
@@ -53,6 +54,12 @@ namespace WooliesXTechnicalChallenge.Services
             tokenParameter[_querySettings.Token] = token;
 
             return _queryBuilderService.BuildQuery(tokenParameter);
+        }
+
+        public decimal GetTrolleyCalculator(TrolleyCalculatorRequest request, string token)
+        {
+            return GetResourceHttpClient()
+                .Post<TrolleyCalculatorRequest, decimal>($"{_apiSettings.TrolleyCalculatorUri}?{GetTokenQuery(token)}", request);
         }
     }
 }
