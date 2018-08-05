@@ -51,12 +51,18 @@ namespace WooliesXTechnicalChallenge.Controllers
             }
         }
 
-        // Post api/sort
+        // Post api/trolleyCalculator
         [HttpPost]
         [Route("trolleyCalculator")]
         public decimal TrolleyCalculator([FromBody]TrolleyCalculatorRequest request)
         {
-            return _answersService.GetTrolleyCalculatorRemote(request);
+            if (!ModelState.IsValid)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return 0;
+            }
+
+            return _answersService.GetTrolleyCalculatorLocal(request);
         }
     }
 }

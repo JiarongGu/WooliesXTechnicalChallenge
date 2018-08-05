@@ -9,7 +9,7 @@ using WooliesXTechnicalChallenge.Options;
 
 namespace WooliesXTechnicalChallenge.Services
 {
-    public class AnswersService: IAnswersService
+    public class AnswersService : IAnswersService
     {
         private readonly IResourceService _resourceService;
         private readonly TesterSettings _testerSettings;
@@ -52,13 +52,42 @@ namespace WooliesXTechnicalChallenge.Services
             return _testerSettings;
         }
 
-        public decimal GetTrolleyCalculatorRemote(TrolleyCalculatorRequest request) {
+        public decimal GetTrolleyCalculatorRemote(TrolleyCalculatorRequest request)
+        {
             return _resourceService.GetTrolleyCalculator(request, _testerSettings.Token);
         }
 
         public decimal GetTrolleyCalculatorLocal(TrolleyCalculatorRequest request)
         {
-            return _resourceService.GetTrolleyCalculator(request, _testerSettings.Token);
+            var productTotalPrice = request.Products.Sum(x => x.Price);
+
+            var sortedSpecials = request.Specials?.Where(x => x.Total > 0).OrderBy(x => x.UnitPrice);
+
+            var quntities = request.Quantities.FirstOrDefault().Value;
+
+            var totalPrice = 0m;
+
+            if (sortedSpecials != null)
+            {
+                foreach (var special in sortedSpecials)
+                {
+                    if (special.UnitPrice < productTotalPrice)
+                    {
+                        var specialUnits = (int)(quntities / special.Quantity);
+                        quntities = quntities % special.Quantity;
+
+                        totalPrice += specialUnits * special.Total;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+
+            totalPrice += quntities * productTotalPrice;
+
+            return totalPrice;
         }
     }
 }
