@@ -22,10 +22,12 @@ namespace WooliesXTechnicalChallenge.Services
 
         public IEnumerable<Product> GetProducts(SortOptions sortOption)
         {
-            if (sortOption == SortOptions.Recommended)
-                return _resourceService.GetShopperHisotry().Products;
+            var token = _testerSettings.Token;
 
-            var products = _resourceService.GetProducts();
+            if (sortOption == SortOptions.Recommended)
+                return _resourceService.GetShopperHisotry(token).Products;
+
+            var products = _resourceService.GetProducts(token);
 
             if (sortOption == SortOptions.Low)
                 return products.OrderBy(x => x.Price);
