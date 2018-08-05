@@ -8,7 +8,6 @@ namespace WooliesXTechnicalChallenge.Options
     public class ResourceApiSettings
     {
         public string Key { get; set; }
-        public string Token { get; set; }
         public string BaseApiUri { get; set; }
         public string ShooperHistoryUri { get; set; }
         public string ProductsUri { get; set; }
