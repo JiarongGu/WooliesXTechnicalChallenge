@@ -8,5 +8,6 @@ namespace WooliesXTechnicalChallenge.Options
     public class QuerySettings
     {
         public string Token { get; set; }
+        public string SortOption { get; set; }
     }
 }

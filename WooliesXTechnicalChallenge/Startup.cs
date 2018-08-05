@@ -51,6 +51,8 @@ namespace WooliesXTechnicalChallenge
             });
 
             services.AddSingleton<IQueryBuilderService, QueryBuilderService>();
+            services.AddScoped<IResourceService, ResourceService>();
+            services.AddScoped<IAnswersService, AnswersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
