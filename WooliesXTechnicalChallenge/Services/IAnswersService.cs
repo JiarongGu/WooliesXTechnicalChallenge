@@ -14,6 +14,7 @@ namespace WooliesXTechnicalChallenge.Services
 
         TesterSettings GetTesterSettings();
 
-        decimal GetTrolleyCalculator(TrolleyCalculatorRequest request);
+        decimal GetTrolleyCalculatorRemote(TrolleyCalculatorRequest request);
+        decimal GetTrolleyCalculatorLocal(TrolleyCalculatorRequest request);
     }
 }

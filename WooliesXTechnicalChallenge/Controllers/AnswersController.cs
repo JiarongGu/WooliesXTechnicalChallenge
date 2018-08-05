@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using WooliesXTechnicalChallenge.Attributes;
 using WooliesXTechnicalChallenge.Enums;
 using WooliesXTechnicalChallenge.Models;
 using WooliesXTechnicalChallenge.Options;
@@ -16,6 +17,7 @@ namespace WooliesXTechnicalChallenge.Controllers
     [Route("api")]
     [ApiController]
     [Authorize]
+    [AnswersExceptionFilter]
     public class AnswersController : ControllerBase
     {
         private readonly IAnswersService _answersService;
@@ -54,7 +56,7 @@ namespace WooliesXTechnicalChallenge.Controllers
         [Route("trolleyCalculator")]
         public decimal TrolleyCalculator([FromBody]TrolleyCalculatorRequest request)
         {
-            return _answersService.GetTrolleyCalculator(request);
+            return _answersService.GetTrolleyCalculatorRemote(request);
         }
     }
 }

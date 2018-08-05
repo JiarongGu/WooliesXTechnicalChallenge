@@ -49,7 +49,12 @@ namespace WooliesXTechnicalChallenge.Services
             return _testerSettings;
         }
 
-        public decimal GetTrolleyCalculator(TrolleyCalculatorRequest request) {
+        public decimal GetTrolleyCalculatorRemote(TrolleyCalculatorRequest request) {
+            return _resourceService.GetTrolleyCalculator(request, _testerSettings.Token);
+        }
+
+        public decimal GetTrolleyCalculatorLocal(TrolleyCalculatorRequest request)
+        {
             return _resourceService.GetTrolleyCalculator(request, _testerSettings.Token);
         }
     }
