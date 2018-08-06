@@ -34,7 +34,7 @@ namespace WooliesXTechnicalChallenge
             var resourceApiSettings = ConfigureSection<ResourceApiSettings>(services);
             var querySettings = ConfigureSection<QuerySettings>(services);
             var testerSettings = ConfigureSection<TesterSettings>(services);
-
+            
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
@@ -55,6 +55,7 @@ namespace WooliesXTechnicalChallenge
             services.AddSingleton<IQueryBuilderService, QueryBuilderService>();
             services.AddScoped<IResourceService, ResourceService>();
             services.AddScoped<IAnswersService, AnswersService>();
+            services.AddScoped<ITrolleyCalculatorService, TrolleyCalculatorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using WooliesXTechnicalChallenge.Attributes;
 using WooliesXTechnicalChallenge.Enums;
@@ -16,15 +18,17 @@ namespace WooliesXTechnicalChallenge.Controllers
 {
     [Route("api")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     [AnswersExceptionFilter]
     public class AnswersController : ControllerBase
     {
         private readonly IAnswersService _answersService;
+        private readonly ITrolleyCalculatorService _trolleyCalculatorService;
 
-        public AnswersController(IAnswersService answersService)
+        public AnswersController(IAnswersService answersService, ITrolleyCalculatorService trolleyCalculatorService)
         {
             _answersService = answersService;
+            _trolleyCalculatorService = trolleyCalculatorService;
         }
 
         // GET api/answers/user
@@ -51,18 +55,12 @@ namespace WooliesXTechnicalChallenge.Controllers
             }
         }
 
-        // Post api/trolleyCalculator
+        // Post api/trolleyTotal
         [HttpPost]
-        [Route("trolleyCalculator")]
-        public decimal TrolleyCalculator([FromBody]TrolleyCalculatorRequest request)
+        [Route("trolleyTotal")]
+        public decimal TrolleyTotal([FromBody]Trolley request)
         {
-            if (!ModelState.IsValid)
-            {
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return 0;
-            }
-
-            return _answersService.GetTrolleyCalculatorLocal(request);
+            return _trolleyCalculatorService.CalculateTrolley(request);
         }
     }
 }

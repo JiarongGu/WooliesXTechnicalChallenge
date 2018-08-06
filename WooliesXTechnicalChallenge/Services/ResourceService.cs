@@ -56,10 +56,10 @@ namespace WooliesXTechnicalChallenge.Services
             return _queryBuilderService.BuildQuery(tokenParameter);
         }
 
-        public decimal GetTrolleyCalculator(TrolleyCalculatorRequest request, string token)
+        public decimal GetTrolleyCalculator(Trolley request, string token)
         {
             return GetResourceHttpClient()
-                .Post<TrolleyCalculatorRequest, decimal>($"{_apiSettings.TrolleyCalculatorUri}?{GetTokenQuery(token)}", request);
+                .Post<Trolley, decimal>($"{_apiSettings.TrolleyCalculatorUri}?{GetTokenQuery(token)}", request);
         }
     }
 }

@@ -9,12 +9,19 @@ namespace WooliesXTechnicalChallenge.Models
 {
     public class Quantity
     {
+        public Quantity() { }
+
+        public Quantity(string name, int quantity)
+        {
+            Name = name;
+            Value = quantity;
+        }
+
         [Required]
         public string Name { get; set; }
 
         [JsonProperty("quantity")]
         [Required]
-        [Range(1, int.MaxValue)]
         public int Value { get; set; }
     }
 }

@@ -13,6 +13,6 @@ namespace WooliesXTechnicalChallenge.Services
 
         IEnumerable<Product> GetProducts(string token);
 
-        decimal GetTrolleyCalculator(TrolleyCalculatorRequest request, string token);
+        decimal GetTrolleyCalculator(Trolley request, string token);
     }
 }

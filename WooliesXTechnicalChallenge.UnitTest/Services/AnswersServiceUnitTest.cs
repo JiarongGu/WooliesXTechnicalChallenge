@@ -118,91 +118,9 @@ namespace WooliesXTechnicalChallenge.UnitTest.Services
             Assert.Equal("tester", testerSetting.Name);
         }
 
-        [Fact]
-        public void TrolleyCalculatorLocal_No_Specials()
-        {
-            var answerService = GetAnswersService();
-            var request = GetTrolleyCalculatorRequest("Test Product A", 100, 10, null);
-            var total = answerService.GetTrolleyCalculatorLocal(request);
-
-            Assert.Equal(1000, total);
-        }
-
-        [Fact]
-        public void TrolleyCalculatorLocal_Single_Special()
-        {
-            var answerService = GetAnswersService();
-            var request = GetTrolleyCalculatorRequest("Test Product A", 100, 10, 
-                    new List<(int, decimal)>() {
-                        (2, 160)
-                    }
-                );
-            var total = answerService.GetTrolleyCalculatorLocal(request);
-
-            Assert.Equal(800, total);
-        }
-
-        [Fact]
-        public void TrolleyCalculatorLocal_Multiple_Specials_Only_One_Taken()
-        {
-            var answerService = GetAnswersService();
-            var request = GetTrolleyCalculatorRequest("Test Product A", 100, 10,
-                    new List<(int, decimal)>() {
-                        (2, 160),
-                        (3, 210)
-                    }
-                );
-            var total = answerService.GetTrolleyCalculatorLocal(request);
-
-            Assert.Equal(730, total);
-        }
-
-        [Fact]
-        public void TrolleyCalculatorLocal_Multiple_Specials_All_Taken()
-        {
-            var answerService = GetAnswersService();
-            var request = GetTrolleyCalculatorRequest("Test Product A", 100, 11,
-                    new List<(int, decimal)>() {
-                        (2, 160),
-                        (3, 210)
-                    }
-                );
-            var total = answerService.GetTrolleyCalculatorLocal(request);
-
-            Assert.Equal(790, total);
-        }
-
         private IAnswersService GetAnswersService()
         {
             return new AnswersService(_resourceServiceMock.Object, _testerSettingsMock.Object);
-        }
-
-        private TrolleyCalculatorRequest GetTrolleyCalculatorRequest(
-            string productName,
-            decimal price,
-            int quantity,
-            IEnumerable<(int, decimal)> specials = null
-            )
-        {
-            return new TrolleyCalculatorRequest()
-            {
-                Products = new List<Product>
-                {
-                    new Product() { Name = productName, Price = price }
-                },
-                Specials = specials?.Select(x => new Special() {
-                    Quantities = new List<Quantity>() {
-                        new Quantity() { Name = productName, Value = x.Item1 }
-                    },
-                    Total = x.Item2
-                }),
-                Quantities = new List<Quantity> {
-                    new Quantity() {
-                        Name = productName,
-                        Value = quantity
-                    }
-                }
-            };
         }
     }
 }

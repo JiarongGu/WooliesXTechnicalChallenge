@@ -13,8 +13,5 @@ namespace WooliesXTechnicalChallenge.Services
         IEnumerable<Product> GetProducts(SortOptions sortOption);
 
         TesterSettings GetTesterSettings();
-
-        decimal GetTrolleyCalculatorRemote(TrolleyCalculatorRequest request);
-        decimal GetTrolleyCalculatorLocal(TrolleyCalculatorRequest request);
     }
 }

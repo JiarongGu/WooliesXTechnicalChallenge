@@ -27,8 +27,8 @@ namespace WooliesXTechnicalChallenge.Services
             if (sortOption == SortOptions.Recommended)
                 return _resourceService.GetShopperHisotry(token)
                     .SelectMany(x => x.Products)
-                    .GroupBy(x => (x.Name, x.Price))
-                    .Select(x => x.First());
+                    .GroupBy(x => (x.Name))
+                    .Select(x => new Product(x.First().Name, x.First().Price, x.Sum(y => y.Quantity)));
 
             var products = _resourceService.GetProducts(token);
 
@@ -50,44 +50,6 @@ namespace WooliesXTechnicalChallenge.Services
         public TesterSettings GetTesterSettings()
         {
             return _testerSettings;
-        }
-
-        public decimal GetTrolleyCalculatorRemote(TrolleyCalculatorRequest request)
-        {
-            return _resourceService.GetTrolleyCalculator(request, _testerSettings.Token);
-        }
-
-        public decimal GetTrolleyCalculatorLocal(TrolleyCalculatorRequest request)
-        {
-            var productTotalPrice = request.Products.Sum(x => x.Price);
-
-            var sortedSpecials = request.Specials?.Where(x => x.Total > 0).OrderBy(x => x.UnitPrice);
-
-            var quntities = request.Quantities.FirstOrDefault().Value;
-
-            var totalPrice = 0m;
-
-            if (sortedSpecials != null)
-            {
-                foreach (var special in sortedSpecials)
-                {
-                    if (special.UnitPrice < productTotalPrice)
-                    {
-                        var specialUnits = (int)(quntities / special.Quantity);
-                        quntities = quntities % special.Quantity;
-
-                        totalPrice += specialUnits * special.Total;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-            }
-
-            totalPrice += quntities * productTotalPrice;
-
-            return totalPrice;
         }
     }
 }

@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  wooliesxtechnicalchallenge:
+    image: ${DOCKER_REGISTRY}wooliesxtechnicalchallenge
+    build:
+      context: .
+      dockerfile: WooliesXTechnicalChallenge/Dockerfile

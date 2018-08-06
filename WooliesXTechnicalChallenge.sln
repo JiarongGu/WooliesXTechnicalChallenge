@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WooliesXTechnicalChallenge", "WooliesXTechnicalChallenge\WooliesXTechnicalChallenge.csproj", "{E93435F2-8581-4409-82A4-42E6D37D2EFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WooliesXTechnicalChallenge", "WooliesXTechnicalChallenge\WooliesXTechnicalChallenge.csproj", "{E93435F2-8581-4409-82A4-42E6D37D2EFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WooliesXTechnicalChallenge.UnitTest", "WooliesXTechnicalChallenge.UnitTest\WooliesXTechnicalChallenge.UnitTest.csproj", "{1ECEA6FE-8F83-4510-B89F-B4AB4F680FD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WooliesXTechnicalChallenge.UnitTest", "WooliesXTechnicalChallenge.UnitTest\WooliesXTechnicalChallenge.UnitTest.csproj", "{1ECEA6FE-8F83-4510-B89F-B4AB4F680FD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

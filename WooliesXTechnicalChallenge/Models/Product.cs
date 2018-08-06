@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace WooliesXTechnicalChallenge.Models
 {
-    public class Product
+    public class Product: ICloneable
     {
         public Product() { }
 
-        public Product(string name, decimal price, decimal quantity)
+        public Product(string name, decimal price)
         {
             Name = name;
             Price = price;
+        }
+
+        public Product(string name, decimal price, decimal quantity)
+            :this(name, price)
+        {
             Quantity = quantity;
         }
 
@@ -24,5 +29,10 @@ namespace WooliesXTechnicalChallenge.Models
         public decimal Price { get; set; }
         
         public decimal Quantity { get; set; }
+
+        public object Clone()
+        {
+            return new Product(Name, Price, Quantity);
+        }
     }
 }
